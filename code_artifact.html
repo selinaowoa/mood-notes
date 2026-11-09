@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>隨心瑣遇心情筆記 - 資訊管理專案成果展示</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter & Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans TC"', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                        },
+                        mood: {
+                            happy: '#fef08a',
+                            sad: '#bfdbfe',
+                            angry: '#fecaca',
+                            calm: '#e9d5ff'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .phone-frame {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 12px #1e293b;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-emerald-50 via-sky-50 to-amber-50 text-slate-700 min-h-screen font-sans antialiased">
+
+    <!-- 導覽列 -->
+    <nav class="sticky top-0 z-50 glass-card border-b border-slate-200/60 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-white shadow-md shadow-emerald-500/20">
+                    <i class="fa-solid fa-heart-pulse text-lg"></i>
+                </div>
+                <div>
+                    <span class="font-poppins font-bold text-xl bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">隨心瑣遇</span>
+                    <span class="block text-xs font-medium text-slate-400">第五組 專案成果展示</span>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-1 lg:space-x-2 text-sm font-medium text-slate-600">
+                <a href="#about" class="px-3 py-2 rounded-xl hover:bg-emerald-50 hover:text-emerald-600 transition">主題說明</a>
+                <a href="#problem" class="px-3 py-2 rounded-xl hover:bg-emerald-50 hover:text-emerald-600 transition">問題分析</a>
+                <a href="#goals" class="px-3 py-2 rounded-xl hover:bg-emerald-50 hover:text-emerald-600 transition">專案目標</a>
+                <a href="#it-solution" class="px-3 py-2 rounded-xl hover:bg-emerald-50 hover:text-emerald-600 transition">IT系統與展示</a>
+                <a href="#promotion" class="px-3 py-2 rounded-xl hover:bg-emerald-50 hover:text-emerald-600 transition">方案推動</a>
+                <a href="#review" class="px-3 py-2 rounded-xl hover:bg-emerald-50 hover:text-emerald-600 transition">檢討反思</a>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <a href="#it-solution" class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2.5 rounded-xl font-medium shadow-md shadow-emerald-500/20 hover:shadow-lg hover:shadow-emerald-500/30 transition transform hover:-translate-y-0.5 text-sm">
+                    <i class="fa-solid fa-mobile-screen mr-1.5"></i>體驗互動介面
+                </a>
+                <button id="mobile-menu-btn" class="md:hidden p-2.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 行動版選單 -->
+        <div id="mobile-menu" class="hidden md:hidden glass-card border-b border-slate-200 px-4 pt-2 pb-4 space-y-2">
+            <a href="#about" class="block px-3 py-2 rounded-xl hover:bg-emerald-50 hover:text-emerald-600 text-slate-600">主題說明</a>
+            <a href="#problem" class="block px-3 py-2 rounded-xl hover:bg-emerald-50 hover:text-emerald-600 text-slate-600">問題分析</a>
+            <a href="#goals" class="block px-3 py-2 rounded-xl hover:bg-emerald-50 hover:text-emerald-600 text-slate-600">專案目標</a>
+            <a href="#it-solution" class="block px-3 py-2 rounded-xl hover:bg-emerald-50 hover:text-emerald-600 text-slate-600">IT系統與展示</a>
+            <a href="#promotion" class="block px-3 py-2 rounded-xl hover:bg-emerald-50 hover:text-emerald-600 text-slate-600">方案推動</a>
+            <a href="#review" class="block px-3 py-2 rounded-xl hover:bg-emerald-50 hover:text-emerald-600 text-slate-600">檢討反思</a>
+        </div>
+    </nav>
+
+    <!-- 頁首 Banner -->
+    <header class="relative overflow-hidden pt-16 pb-24 lg:pt-24 lg:pb-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto">
+                <span class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700 mb-6 shadow-sm">
+                    <i class="fa-solid fa-seedling mr-1.5"></i> 資訊管理專案報告
+                </span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-800 tracking-tight leading-tight mb-6">
+                    隨心瑣遇 <span class="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">心情筆記</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-slate-600 mb-10 leading-relaxed">
+                    專為 6-12 歲雙低家庭兒童打造的心情筆記 App，串聯兒童端、家長端與社工端，建構溫暖且即時的安全防護網。
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#it-solution" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-8 py-3.5 rounded-2xl shadow-lg shadow-emerald-600/30 transition transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-play mr-2"></i> 開始探索專案
+                    </a>
+                    <a href="#about" class="bg-white/80 hover:bg-white text-slate-700 font-medium px-8 py-3.5 rounded-2xl shadow-sm border border-slate-200 transition">
+                        了解設計理念
+                    </a>
+                </div>
+            </div>
+
+            <!-- 組員名單卡片 -->
+            <div class="mt-16 max-w-4xl mx-auto glass-card p-6 sm:p-8 rounded-3xl shadow-xl border border-white/80">
+                <div class="text-center mb-6">
+                    <h3 class="font-bold text-slate-800 text-lg"><i class="fa-solid fa-users text-emerald-600 mr-2"></i>第五組專案成員</h3>
+                    <p class="text-xs text-slate-400 mt-1">資訊管理專案開發團隊</p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-center text-sm">
+                    <div class="p-3 bg-white/60 rounded-xl border border-slate-100 shadow-sm"><span class="block text-xs text-slate-400">11144210</span><strong class="text-slate-700">蔡欣伶</strong></div>
+                    <div class="p-3 bg-white/60 rounded-xl border border-slate-100 shadow-sm"><span class="block text-xs text-slate-400">11144237</span><strong class="text-slate-700">賴億珊</strong></div>
+                    <div class="p-3 bg-white/60 rounded-xl border border-slate-100 shadow-sm"><span class="block text-xs text-slate-400">11144232</span><strong class="text-slate-700">林怡婷</strong></div>
+                    <div class="p-3 bg-white/60 rounded-xl border border-slate-100 shadow-sm"><span class="block text-xs text-slate-400">11144244</span><strong class="text-slate-700">李嘉欣</strong></div>
+                    <div class="p-3 bg-white/60 rounded-xl border border-slate-100 shadow-sm"><span class="block text-xs text-slate-400">11144234</span><strong class="text-slate-700">林欣儀</strong></div>
+                    <div class="p-3 bg-white/60 rounded-xl border border-slate-100 shadow-sm"><span class="block text-xs text-slate-400">11144249</span><strong class="text-slate-700">林沛潔</strong></div>
+                    <div class="p-3 bg-white/60 rounded-xl border border-slate-100 shadow-sm"><span class="block text-xs text-slate-400">11144235</span><strong class="text-slate-700">涂芸瑄</strong></div>
+                    <div class="p-3 bg-white/60 rounded-xl border border-slate-100 shadow-sm"><span class="block text-xs text-slate-400">11144252</span><strong class="text-slate-700">劉芸竹</strong></div>
+                    <div class="col-span-2 sm:col-span-3 md:col-span-4 p-3 bg-white/60 rounded-xl border border-slate-100 shadow-sm max-w-xs mx-auto"><span class="block text-xs text-slate-400">11144270</span><strong class="text-slate-700">林芷萱</strong></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主內容區 -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 pb-24">
+
+        <!-- 01 主題說明 & SDGs -->
+        <section id="about" class="scroll-mt-28">
+            <div class="flex items-center space-x-3 mb-8">
+                <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-emerald-600 text-white font-poppins font-bold text-lg shadow-md shadow-emerald-500/20">01</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-800">主題說明與 SDGs 目標</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                <div class="glass-card p-8 rounded-3xl shadow-lg border border-white/80 lg:col-span-1 flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl mb-6 shadow-sm">
+                            <i class="fa-solid fa-house-chimney-user"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3">雙低家庭兒童關懷</h3>
+                        <p class="text-slate-600 leading-relaxed text-sm mb-6">
+                            關注 6-12 歲（國小生）關鍵成長期。雙低家庭（低收入、低資源）兒童常因家庭支持與資源不足，缺乏情緒表達管道與正向引導。
+                        </p>
+                    </div>
+                    <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-100">
+                        <span class="block text-xs font-semibold text-emerald-700 mb-1"><i class="fa-solid fa-bullseye mr-1"></i> 核心願景</span>
+                        <p class="text-sm font-medium text-emerald-900">透過心情筆記 App，打造溫暖無憂的成長環境。</p>
+                    </div>
+                </div>
+
+                <!-- SDGs 卡片區 -->
+                <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="glass-card p-6 rounded-3xl shadow-md border border-white/80 hover:shadow-lg transition">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <span class="w-10 h-10 rounded-xl bg-red-100 text-red-600 flex items-center justify-center font-bold text-sm">3</span>
+                            <h4 class="font-bold text-slate-800">目標 3：健康與福祉</h4>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">促進兒童的心理健康與情緒福祉，提供即時輔導與早期干預機制。</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-3xl shadow-md border border-white/80 hover:shadow-lg transition">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <span class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center font-bold text-sm">4</span>
+                            <h4 class="font-bold text-slate-800">目標 4：優質教育</h4>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">透過與學校合作，提升情緒教育與學生全人發展，落實關懷。</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-3xl shadow-md border border-white/80 hover:shadow-lg transition">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <span class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm">10</span>
+                            <h4 class="font-bold text-slate-800">目標 10：減少不平等</h4>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">關注資源不足的雙低家庭孩童，給予平等及多元的心理照顧機會。</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-3xl shadow-md border border-white/80 hover:shadow-lg transition">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <span class="w-10 h-10 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center font-bold text-sm">17</span>
+                            <h4 class="font-bold text-slate-800">目標 17：多元夥伴關係</h4>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">與市政府、公部門及教育局建立合作機制，共同推動兒童保護。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02 問題分析 -->
+        <section id="problem" class="scroll-mt-28">
+            <div class="flex items-center space-x-3 mb-8">
+                <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-emerald-600 text-white font-poppins font-bold text-lg shadow-md shadow-emerald-500/20">02</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-800">問題分析</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                <div class="glass-card p-6 rounded-3xl shadow-md border border-white/80 text-center flex flex-col items-center justify-center">
+                    <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-house-crack"></i></div>
+                    <h3 class="font-bold text-slate-800 text-sm mb-2">家庭支持不足</h3>
+                    <p class="text-xs text-slate-500">影響情感正常發展，缺乏日常陪伴。</p>
+                </div>
+                <div class="glass-card p-6 rounded-3xl shadow-md border border-white/80 text-center flex flex-col items-center justify-center">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-brain"></i></div>
+                    <h3 class="font-bold text-slate-800 text-sm mb-2">缺乏情緒素養</h3>
+                    <p class="text-xs text-slate-500">缺乏正確情緒管理與心理健康認知。</p>
+                </div>
+                <div class="glass-card p-6 rounded-3xl shadow-md border border-white/80 text-center flex flex-col items-center justify-center">
+                    <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-gamepad"></i></div>
+                    <h3 class="font-bold text-slate-800 text-sm mb-2">過度依賴網路</h3>
+                    <p class="text-xs text-slate-500">沉迷網路世界，缺乏正向成人引導。</p>
+                </div>
+                <div class="glass-card p-6 rounded-3xl shadow-md border border-white/80 text-center flex flex-col items-center justify-center">
+                    <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-600 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-hand-holding-medical"></i></div>
+                    <h3 class="font-bold text-slate-800 text-sm mb-2">關懷資源有限</h3>
+                    <p class="text-xs text-slate-500">現有關懷資源不足，難以及早介入協助。</p>
+                </div>
+                <div class="glass-card p-6 rounded-3xl shadow-md border border-white/80 text-center flex flex-col items-center justify-center sm:col-span-2 lg:col-span-1">
+                    <div class="w-12 h-12 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-comments"></i></div>
+                    <h3 class="font-bold text-slate-800 text-sm mb-2">缺乏安全平台</h3>
+                    <p class="text-xs text-slate-500">缺乏一個專屬且安全的心情表達出口。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03 專案目標與預期效益 -->
+        <section id="goals" class="scroll-mt-28">
+            <div class="flex items-center space-x-3 mb-8">
+                <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-emerald-600 text-white font-poppins font-bold text-lg shadow-md shadow-emerald-500/20">03</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-800">專案目標與預期效益</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="glass-card p-6 rounded-3xl shadow-md border border-white/80 relative overflow-hidden">
+                    <span class="absolute top-4 right-4 font-poppins font-black text-4xl text-slate-100">01</span>
+                    <h3 class="font-bold text-slate-800 text-base mb-2 relative z-10">建構情緒表達平台</h3>
+                    <p class="text-xs text-slate-600 relative z-10">提供兒童專屬、直覺且安全的心情日記記錄空間。</p>
+                </div>
+                <div class="glass-card p-6 rounded-3xl shadow-md border border-white/80 relative overflow-hidden">
+                    <span class="absolute top-4 right-4 font-poppins font-black text-4xl text-slate-100">02</span>
+                    <h3 class="font-bold text-slate-800 text-base mb-2 relative z-10">建立早期預警機制</h3>
+                    <p class="text-xs text-slate-600 relative z-10">透過關鍵字與風險級數偵測，實現即時通報與防範。</p>
+                </div>
+                <div class="glass-card p-6 rounded-3xl shadow-md border border-white/80 relative overflow-hidden">
+                    <span class="absolute top-4 right-4 font-poppins font-black text-4xl text-slate-100">03</span>
+                    <h3 class="font-bold text-slate-800 text-base mb-2 relative z-10">跨域整合與政策落實</h3>
+                    <p class="text-xs text-slate-600 relative z-10">結合家庭、學校與社福單位，形成堅固的社會安全網絡。</p>
+                </div>
+                <div class="glass-card p-6 rounded-3xl shadow-md border border-white/80 relative overflow-hidden">
+                    <span class="absolute top-4 right-4 font-poppins font-black text-4xl text-slate-100">04</span>
+                    <h3 class="font-bold text-slate-800 text-base mb-2 relative z-10">強化資料視覺化</h3>
+                    <p class="text-xs text-slate-600 relative z-10">透過趨勢圖表精準掌握兒童情緒變化軌跡與心理狀況。</p>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-emerald-600 to-teal-600 text-white p-8 rounded-3xl shadow-xl flex flex-col md:flex-row items-center justify-between">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-2"><i class="fa-solid fa-circle-check mr-2"></i> 核心預期效益</h3>
+                    <p class="text-emerald-100 text-sm">完整建置「兒童端心情筆記App」與「家長/社工端完善後台管理平台」。</p>
+                </div>
+                <div class="flex gap-4">
+                    <div class="bg-white/10 backdrop-blur-md px-6 py-3 rounded-2xl text-center border border-white/20">
+                        <span class="block text-2xl font-bold font-poppins">3大</span>
+                        <span class="text-xs text-emerald-100">核心模組端</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md px-6 py-3 rounded-2xl text-center border border-white/20">
+                        <span class="block text-2xl font-bold font-poppins">4級</span>
+                        <span class="text-xs text-emerald-100">智慧風險評估</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04 IT方案與互動模擬展示 -->
+        <section id="it-solution" class="scroll-mt-28">
+            <div class="flex items-center space-x-3 mb-8">
+                <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-emerald-600 text-white font-poppins font-bold text-lg shadow-md shadow-emerald-500/20">04</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-800">IT方案架構與介面互動展示</h2>
+            </div>
+
+            <!-- IT架構簡述 -->
+            <div class="glass-card p-6 rounded-3xl shadow-md border border-white/80 mb-10">
+                <h3 class="font-bold text-slate-800 text-base mb-4"><i class="fa-solid fa-network-wired text-emerald-600 mr-2"></i>系統技術架構</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                    <div class="p-4 bg-white/70 rounded-2xl border border-slate-100">
+                        <strong class="text-emerald-700 block mb-1"><i class="fa-solid fa-code mr-1"></i> 前端開發</strong>
+                        <p class="text-xs text-slate-600">採用 Flutter 跨平台框架與 JavaScript 開發，支援手機、平板及 Web 端存取。</p>
+                    </div>
+                    <div class="p-4 bg-white/70 rounded-2xl border border-slate-100">
+                        <strong class="text-emerald-700 block mb-1"><i class="fa-solid fa-database mr-1"></i> 後端與資料庫</strong>
+                        <p class="text-xs text-slate-600">使用 Firebase Authentication / Supabase Auth 管理帳號，Firestore 儲存日記與紀錄。</p>
+                    </div>
+                    <div class="p-4 bg-white/70 rounded-2xl border border-slate-100">
+                        <strong class="text-emerald-700 block mb-1"><i class="fa-solid fa-shield-halved mr-1"></i> 安全與通知</strong>
+                        <p class="text-xs text-slate-600">密碼經 Bcrypt 加密，憑證採用 JWT，並整合 Firebase Cloud Messaging 推播。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 模擬器介面切換區 -->
+            <div class="glass-card p-6 sm:p-8 rounded-3xl shadow-xl border border-white/80">
+                <div class="text-center mb-8">
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">App 互動模擬器</h3>
+                    <p class="text-xs text-slate-500">點擊下方身分切換按鈕，實際體驗各模組的介面與核心功能！</p>
+                    
+                    <!-- 切換按鈕 -->
+                    <div class="flex flex-wrap justify-center gap-3 mt-6">
+                        <button onclick="switchRole('child')" id="btn-child" class="px-6 py-2.5 rounded-2xl font-medium text-sm transition shadow-sm bg-emerald-600 text-white">
+                            <i class="fa-solid fa-child mr-1.5"></i> 兒童端 (心情筆記)
+                        </button>
+                        <button onclick="switchRole('parent')" id="btn-parent" class="px-6 py-2.5 rounded-2xl font-medium text-sm transition shadow-sm bg-white text-slate-600 hover:bg-slate-100 border border-slate-200">
+                            <i class="fa-solid fa-user-group mr-1.5"></i> 家長端 (趨勢與通知)
+                        </button>
+                        <button onclick="switchRole('social')" id="btn-social" class="px-6 py-2.5 rounded-2xl font-medium text-sm transition shadow-sm bg-white text-slate-600 hover:bg-slate-100 border border-slate-200">
+                            <i class="fa-solid fa-user-doctor mr-1.5"></i> 社工端 (風險管理)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 手機外框顯示器 -->
+                <div class="flex justify-center">
+                    <div class="w-full max-w-sm rounded-[40px] phone-frame bg-slate-900 p-3 relative overflow-hidden transition-all duration-300">
+                        <!-- 手機螢幕內部 -->
+                        <div id="phone-screen" class="bg-slate-50 rounded-[32px] min-h-[580px] max-h-[620px] overflow-y-auto p-5 text-slate-800 flex flex-col justify-between">
+                            <!-- 內容由 JS 動態填入 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 05 方案推動說明 -->
+        <section id="promotion" class="scroll-mt-28">
+            <div class="flex items-center space-x-3 mb-8">
+                <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-emerald-600 text-white font-poppins font-bold text-lg shadow-md shadow-emerald-500/20">05</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-800">方案推動與合作利益</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 學校合作 -->
+                <div class="glass-card p-6 rounded-3xl shadow-md border border-white/80">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-school"></i></div>
+                    <h3 class="font-bold text-slate-800 text-base mb-3">學校與親職團體合作</h3>
+                    <div class="space-y-3 text-xs">
+                        <div class="p-3 bg-white/60 rounded-xl border border-slate-100">
+                            <strong class="text-emerald-700 block mb-0.5">我方獲益</strong>
+                            <p class="text-slate-600">獲取兒童數據樣本、提升品牌信任度與專案口碑。</p>
+                        </div>
+                        <div class="p-3 bg-white/60 rounded-xl border border-slate-100">
+                            <strong class="text-teal-700 block mb-0.5">他方（學校）獲益</strong>
+                            <p class="text-slate-600">深入了解學生心理狀況、提升形象並獲得教育支援資源。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 社工與公眾人物合作 -->
+                <div class="glass-card p-6 rounded-3xl shadow-md border border-white/80">
+                    <div class="w-12 h-12 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-hands-holding-child"></i></div>
+                    <h3 class="font-bold text-slate-800 text-base mb-3">社工機構與公眾人物</h3>
+                    <div class="space-y-3 text-xs">
+                        <div class="p-3 bg-white/60 rounded-xl border border-slate-100">
+                            <strong class="text-sky-700 block mb-0.5">社工合作效益</strong>
+                            <p class="text-slate-600">我方提升社會影響力；社工端提升工作效率、精準度並減少人力負擔。</p>
+                        </div>
+                        <div class="p-3 bg-white/60 rounded-xl border border-slate-100">
+                            <strong class="text-sky-700 block mb-0.5">公眾人物合作效益</strong>
+                            <p class="text-slate-600">擴展影響年齡層、提供正面聲音，共同連結家庭情感。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 衛福部與教育部合作 -->
+                <div class="glass-card p-6 rounded-3xl shadow-md border border-white/80 md:col-span-2 lg:col-span-1">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-landmark"></i></div>
+                    <h3 class="font-bold text-slate-800 text-base mb-3">衛福部心理健康司/國教署</h3>
+                    <div class="space-y-3 text-xs">
+                        <div class="p-3 bg-white/60 rounded-xl border border-slate-100">
+                            <strong class="text-amber-700 block mb-0.5">政策與公信力</strong>
+                            <p class="text-slate-600">提升專案公信力、擴大資源導入。協助公部門推動相關政策與強化服務。</p>
+                        </div>
+                        <div class="p-3 bg-white/60 rounded-xl border border-slate-100">
+                            <strong class="text-amber-700 block mb-0.5">成果發表與宣傳</strong>
+                            <p class="text-slate-600">舉辦發表會與媒體宣傳活動，大幅提升能見度與社會關注度。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 06 檢討與反思 -->
+        <section id="review" class="scroll-mt-28">
+            <div class="flex items-center space-x-3 mb-8">
+                <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-emerald-600 text-white font-poppins font-bold text-lg shadow-md shadow-emerald-500/20">06</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-800">檢討與反思</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-card p-6 sm:p-8 rounded-3xl shadow-md border border-white/80">
+                    <h3 class="font-bold text-slate-800 text-lg mb-4 flex items-center">
+                        <i class="fa-solid fa-lightbulb text-amber-500 mr-2"></i> 產品功能與體驗優化
+                    </h3>
+                    <ul class="space-y-3 text-sm text-slate-600">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-emerald-500 mt-1 mr-2.5"></i>
+                            <div><strong>增添遊戲機制：</strong>針對兒童端缺乏吸引力問題，加入趣味互動與獎勵機制。</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-emerald-500 mt-1 mr-2.5"></i>
+                            <div><strong>家長教育專區：</strong>設計家長專屬版面，分享教育經驗與正向溝通技巧。</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-emerald-500 mt-1 mr-2.5"></i>
+                            <div><strong>建立求助管道：</strong>增設兒童直接聯繫輔導員與社工的功能，確保即時協助。</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-6 sm:p-8 rounded-3xl shadow-md border border-white/80">
+                    <h3 class="font-bold text-slate-800 text-lg mb-4 flex items-center">
+                        <i class="fa-solid fa-shield-heart text-rose-500 mr-2"></i> 隱私保護與服務對象擴展
+                    </h3>
+                    <ul class="space-y-3 text-sm text-slate-600">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-emerald-500 mt-1 mr-2.5"></i>
+                            <div><strong>平衡隱私與監控：</strong>增設詢問孩子意願之通知設定，避免孩子覺得隱私受侵犯。</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-emerald-500 mt-1 mr-2.5"></i>
+                            <div><strong>多平台適應與對象：</strong>擴充不同載具模式，服務對象精準聚焦於國小至國中階段。</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-emerald-500 mt-1 mr-2.5"></i>
+                            <div><strong>社工介面與審核：</strong>改善社工端介面，註冊流程增加證明文件與人工審核機制。</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 頁尾 -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <div class="w-8 h-8 rounded-xl bg-emerald-500 flex items-center justify-center text-white text-sm shadow-md">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+                <span class="font-poppins font-bold text-white text-lg">隨心瑣遇心情筆記</span>
+            </div>
+            <p class="text-xs text-slate-400 mb-6">資訊管理專案成果報告 | 參考法規：個資法、兒少法 | 工具支援：ChatGPT, Claude.ai, Gemini</p>
+            <p class="text-xs text-slate-400">&copy; 2025 資訊管理專案第五組. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript 互動邏輯 -->
+    <script>
+        // 行動版選單開關
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 模擬器資料與切換邏輯
+        const screens = {
+            child: `
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-bold text-slate-800 text-sm"><i class="fa-solid fa-user-shield text-emerald-600 mr-1"></i> 小孩心情筆記</span>
+                        <span class="text-[10px] bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-medium">兒童端</span>
+                    </div>
+                    <div class="bg-gradient-to-r from-emerald-500 to-teal-400 p-4 rounded-2xl text-white mb-4 shadow-sm">
+                        <h4 class="font-bold text-sm mb-1">嗨，今天過得怎麼樣？</h4>
+                        <p class="text-[11px] text-emerald-50">把心情寫下來，我們一直陪著你。</p>
+                    </div>
+                    <div class="space-y-3 mb-4">
+                        <label class="block text-xs font-semibold text-slate-600">今天的心情日記：</label>
+                        <textarea id="diary-input" rows="3" class="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white" placeholder="例如：今天考試考得很好，我很開心！(或輸入負面詞彙測試系統警示)"></textarea>
+                        <button onclick="submitDiary()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-xs py-2.5 rounded-xl transition shadow-sm">
+                            儲存今日心情
+                        </button>
+                    </div>
+                    <div id="alert-box" class="hidden bg-rose-50 border border-rose-200 p-3 rounded-2xl text-rose-800 text-[11px] space-y-1.5">
+                        <div class="font-bold flex items-center"><i class="fa-solid fa-triangle-exclamation mr-1 text-rose-600"></i> ▲ 心情提醒</div>
+                        <p>我們發現你的日記中可能有負面情緒，希望保持心情平穩，有需要可以尋找信任的朋友或專業協助。</p>
+                        <button onclick="dismissAlert()" class="mt-1 text-[10px] bg-rose-600 text-white px-2.5 py-1 rounded-lg font-medium">知道了</button>
+                    </div>
+                </div>
+                <div class="text-center pt-2 border-t border-slate-100 text-[10px] text-slate-400">
+                    內建智慧分析模組 (EmotionAnalyzer)
+                </div>
+            `,
+            parent: `
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-bold text-slate-800 text-sm"><i class="fa-solid fa-chart-line text-teal-600 mr-1"></i> 家長心理儀表板</span>
+                        <span class="text-[10px] bg-teal-100 text-teal-700 px-2 py-0.5 rounded-full font-medium">家長端</span>
+                    </div>
+                    <div class="bg-amber-50 border border-amber-200 p-3 rounded-2xl mb-4 text-xs text-amber-900">
+                        <div class="font-bold mb-1 flex items-center"><i class="fa-solid fa-bell text-amber-600 mr-1"></i> 警示通知</div>
+                        <p class="text-[11px]">偵測到孩子於 5/22 日記中出現高風險關鍵字，請多加留意與陪伴。</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-2xl border border-slate-200 mb-4 shadow-sm">
+                        <h4 class="font-bold text-xs text-slate-700 mb-2">孩子近期情緒趨勢</h4>
+                        <div class="h-24 bg-slate-50 rounded-xl flex items-end justify-between px-3 pb-2 border border-slate-100">
+                            <div class="w-4 bg-emerald-400 h-12 rounded-t"></div>
+                            <div class="w-4 bg-emerald-500 h-16 rounded-t"></div>
+                            <div class="w-4 bg-amber-400 h-8 rounded-t"></div>
+                            <div class="w-4 bg-rose-400 h-5 rounded-t" title="注意"></div>
+                            <div class="w-4 bg-emerald-400 h-14 rounded-t"></div>
+                        </div>
+                        <span class="block text-[10px] text-center text-slate-400 mt-1">近 5 日情緒狀態波動圖</span>
+                    </div>
+                    <div class="space-y-2">
+                        <a href="#consult" onclick="triggerAlert('已開啟與張老師對話視窗')" class="block text-center bg-teal-600 hover:bg-teal-700 text-white font-medium text-xs py-2.5 rounded-xl transition shadow-sm">
+                            尋求輔導員協助
+                        </a>
+                    </div>
+                </div>
+                <div class="text-center pt-2 border-t border-slate-100 text-[10px] text-slate-400">
+                    Firebase Cloud Messaging 即時推播
+                </div>
+            `,
+            social: `
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-bold text-slate-800 text-sm"><i class="fa-solid fa-user-doctor text-sky-600 mr-1"></i> 社工風險管理</span>
+                        <span class="text-[10px] bg-sky-100 text-sky-700 px-2 py-0.5 rounded-full font-medium">社工端</span>
+                    </div>
+                    <div class="space-y-2.5 mb-4 text-xs">
+                        <div class="p-3 bg-white rounded-xl border border-slate-200 shadow-sm flex justify-between items-center">
+                            <div>
+                                <strong class="text-slate-800 block">王小明 (7歲)</strong>
+                                <span class="text-[10px] text-slate-500">關注議題：情緒管理</span>
+                            </div>
+                            <span class="px-2 py-1 bg-rose-100 text-rose-700 text-[10px] font-bold rounded-lg">第3級 高風險</span>
+                        </div>
+                        <div class="p-3 bg-white rounded-xl border border-slate-200 shadow-sm flex justify-between items-center">
+                            <div>
+                                <strong class="text-slate-800 block">林小華 (9歲)</strong>
+                                <span class="text-[10px] text-slate-500">關注議題：家庭支持</span>
+                            </div>
+                            <span class="px-2 py-1 bg-amber-100 text-amber-700 text-[10px] font-bold rounded-lg">第2級 中風險</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-3 rounded-2xl border border-slate-200 text-[11px] text-slate-600 space-y-1 shadow-sm">
+                        <div class="font-bold text-slate-800 mb-1">風險分級定義簡介：</div>
+                        <p><strong>第3級（高風險）：</strong>出現自傷、自殺或極端情緒語句，立即通報社福單位與家長介入。</p>
+                    </div>
+                </div>
+                <div class="text-center pt-2 border-t border-slate-100 text-[10px] text-slate-400">
+                    整合個案管理與自動通報系統
+                </div>
+            `
+        };
+
+        function switchRole(role) {
+            const screen = document.getElementById('phone-screen');
+            screen.innerHTML = screens[role];
+
+            // 更新按鈕樣式
+            ['child', 'parent', 'social'].forEach(r => {
+                const btn = document.getElementById(`btn-${r}`);
+                if (r === role) {
+                    btn.className = "px-6 py-2.5 rounded-2xl font-medium text-sm transition shadow-sm bg-emerald-600 text-white";
+                } else {
+                    btn.className = "px-6 py-2.5 rounded-2xl font-medium text-sm transition shadow-sm bg-white text-slate-600 hover:bg-slate-100 border border-slate-200";
+                }
+            });
+        }
+
+        function submitDiary() {
+            const input = document.getElementById('diary-input').value;
+            const alertBox = document.getElementById('alert-box');
+            const negativeWords = ['自殺', '死', '難過', '生氣', '痛苦', '絕望', '孤單', '焦慮'];
+            
+            const hasNegative = negativeWords.some(word => input.includes(word));
+            if (hasNegative || input.trim() === '') {
+                alertBox.classList.remove('hidden');
+            } else {
+                alertBox.classList.add('hidden');
+                alert('日記已成功儲存！今天也要保持好心情喔！');
+            }
+        }
+
+        function dismissAlert() {
+            document.getElementById('alert-box').classList.add('hidden');
+        }
+
+        function triggerAlert(msg) {
+            alert(msg);
+        }
+
+        // 初始化預設顯示兒童端
+        window.onload = function() {
+            switchRole('child');
+        };
+    </script>
+</body>
+</html>
